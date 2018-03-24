@@ -20,7 +20,7 @@ def sansChecker(url):
         try:
             reportedTimes = soup.find('count')
             if reportedTimes.text != '':
-                print 'Report Times: ' + str(reportedTimes)
+                print 'Report Times: ' + reportedTimes.text
             else:
                 print 'Report Times: 0'
         except Exception:
@@ -29,7 +29,7 @@ def sansChecker(url):
         try:
             targets = soup.find('attacks')
             if targets.text != '':
-                print 'Total Targets: ' + str(targets)
+                print 'Total Targets: ' + targets.text
             else:print 'Total Targets: 0'
         except Exception:
             print 'Total Targets: 0'
@@ -37,7 +37,7 @@ def sansChecker(url):
         try:
             firstReported = soup.find('mindate')
             if firstReported.text != '':
-                print 'First Reported: ' + str(firstReported)
+                print 'First Reported: ' + firstReported.text
             else:
                 print 'First Reported: 0'
         except Exception:
@@ -46,7 +46,7 @@ def sansChecker(url):
         try:
             latestReported = soup.find('updated')
             if latestReported.text != '':
-                print 'Recent Report: ' + str(latestReported)
+                print 'Recent Report: ' + latestReported.text
             else:
                 print 'Recent Report: 0'
         except Exception:
