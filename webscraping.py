@@ -1,7 +1,7 @@
 #!/usr/bin/python
 import sys
 import re
-import abuseipdb, sans, myIPwhois, xforceIBM
+import abuseipdb, ipvoid, sans, myIPwhois, xforceIBM
 
 def webscraping():
     if len(sys.argv) != 2:
@@ -20,6 +20,9 @@ def webscraping():
         if re_ip.match(sys.argv[1]):
             # Call myIPwhois.py
             myIPwhois.IPWhoisChecker("https://www.abuseipdb.com/whois/" + sys.argv[1])
+
+            # Call ipvoid.py
+            ipvoid.ipvoidChecker(sys.argv[1])
 
             # Call sans.py
             sans.sansChecker(sys.argv[1])
