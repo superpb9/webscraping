@@ -1,12 +1,29 @@
+import re
+
 from bs4 import BeautifulSoup
-import requests
+import requests, dns.resolver
 
-def sansChecker(url):
 
-    # URL = "https://isc.sans.edu/api/ip/x.x.x.x"
+
+def sansChecker(IPOrDomain):
+
     # HTTP Query
-    myResult = requests.get(url)
+    url = "https://isc.sans.edu/api/ip/" + IPOrDomain
 
+    # If the input value is a domain
+    re_ip = re.compile('^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$')
+    if not re_ip.match(IPOrDomain):
+        #Try to resolve the domain first
+        aRecord = []
+        my_resolver = dns.resolver.Resolver()
+        my_resolver.nameservers = ['8.8.8.8']
+        for rdata in my_resolver.query(IPOrDomain, "A"):
+            aRecord.append(rdata.address)
+        # Only use the 1st A record
+        url = "https://isc.sans.edu/api/ip/" + aRecord[0]
+
+    # Our actual checking begins from here
+    myResult = requests.get(url)
     c = myResult.content
     soup = BeautifulSoup(c, "lxml")
     mySoup = soup.find('error')
@@ -16,7 +33,6 @@ def sansChecker(url):
     if mySoup is None:
         c = myResult.content
         soup = BeautifulSoup(c, "lxml")
-
         try:
             reportedTimes = soup.find('count')
             if reportedTimes.text != '':
@@ -30,7 +46,8 @@ def sansChecker(url):
             targets = soup.find('attacks')
             if targets.text != '':
                 print 'Total Targets: ' + targets.text
-            else:print 'Total Targets: 0'
+            else:
+                print 'Total Targets: 0'
         except Exception:
             print 'Total Targets: 0'
 

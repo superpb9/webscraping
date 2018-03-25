@@ -12,6 +12,11 @@ def IPWhoisChecker(url):
     if myResult.status_code == 422:
         print 'Error: 422 Unprocessable Entity (e.g. http://www.com)'
         print 'We expected a valid IP address or Domain name.'
+        print 'Program will exit ...'
+        exit()
+    elif myResult.status_code == 404:
+        print 'Response Error: 404 We expected a valid IP address or Domain name.'
+        print 'Program will exit ...'
         exit()
     else:
         # If domain resolved to an IP

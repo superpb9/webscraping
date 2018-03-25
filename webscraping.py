@@ -22,7 +22,7 @@ def webscraping():
             myIPwhois.IPWhoisChecker("https://www.abuseipdb.com/whois/" + sys.argv[1])
 
             # Call sans.py
-            sans.sansChecker("https://isc.sans.edu/api/ip/" + sys.argv[1])
+            sans.sansChecker(sys.argv[1])
 
             # Call abuseipdb.py
             abuseipdb.abuseipdbChecker("https://www.abuseipdb.com/check/" + sys.argv[1])
@@ -32,18 +32,20 @@ def webscraping():
 
 
         # If the input is a domain or other strings, let the website validate then ...
-        #else:
-            # Call myIPwhois.py
-            #myIPwhois.IPWhoisChecker("https://www.abuseipdb.com/whois/" + sys.argv[1])
+        else:
+            #Call myIPwhois.py
+            myIPwhois.IPWhoisChecker("https://www.abuseipdb.com/whois/" + sys.argv[1])
 
             # Call sans.py
-            #sans.sansChecker("https://isc.sans.edu/api/ip/" + sys.argv[1])
+            # sans.sansChecker("https://isc.sans.edu/api/ip/" + sys.argv[1])
+            sans.sansChecker(sys.argv[1])
 
             # Call abuseipdb.py
-            #abuseipdb.abuseipdbChecker("https://www.abuseipdb.com/check/" + sys.argv[1])
+            abuseipdb.abuseipdbChecker("https://www.abuseipdb.com/check/" + sys.argv[1])
 
             # Call xforceIBM.py
-            #xforceIBM.myXForceChecker("https://api.xforce.ibmcloud.com/ipr/" + sys.argv[1])
+            # Check the domain
+            xforceIBM.myXForceChecker("https://api.xforce.ibmcloud.com/url/" + sys.argv[1])
 
 if __name__ == '__main__':
     webscraping()
