@@ -1,13 +1,12 @@
-# webscraping 
-author: Patrick Dong
+# Webscraping 
+#Author: Patrick Dong
+#A handy web scraping tool to check a source IP/Domain
 
-A handy web scraping tool to check a source IP/Domain
-
-Usage: python webstraping.py <IP|Domain>
->>>>> Welcome to WebScraping Tool <<<<<
+-Usage: python webstraping.py <IP|Domain>
+Welcome to WebScraping Tool
 Now checking 104.236.159.26 ...
 
-[.] IP Whois Result
+[.] IP Whois Result:
 inetnum:        183.0.0.0 - 183.63.255.255
 netname:        CHINANET-GD
 descr:          CHINANET Guangdong province network
@@ -46,14 +45,14 @@ mnt-irt:        IRT-CHINANET-CN
 12                Region                                        Guangdong 
 
 
-[.] SANS Result
+[.] SANS Result:
 Report Times: 119
 Total Targets: 45
 First Reported: 2017-11-02
 Recent Report: 2018-03-30 14:14:27
 
 
-[.] AbuseIPDB Result
+[.] AbuseIPDB Result:
 Reported 8 times
              Date            Reporter                            Category
 0   1 minute ago        greensnow.co                       | Port Scan | 
