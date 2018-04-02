@@ -1,11 +1,13 @@
-## Webscraping 
+#### Webscraping 
 
 Author: Patrick Dong
 
-A handy web scraping tool to check a source IP/Domain
+#### Requirement
+Python 2.7 and BeautifulSoup, requests, pandas
+
 
 #### Usage: python webstraping.py <IP|Domain>
-
+```
 Welcome to WebScraping Tool
 Now checking 104.236.159.26 ...
 
@@ -18,3 +20,4 @@ Now checking 104.236.159.26 ...
 [.] AbuseIPDB Result:
 
 [.] IBM X-Force Result
+```
