@@ -1,13 +1,14 @@
 #### Webscraping 
-
 Author: Patrick Dong
+Modules Developed: abuseipdb.py, ipvoid.py, myIPWhois.py, sans.py, xforceIBM.py
 
 #### Requirement
 Python 2.7 and BeautifulSoup, requests, pandas
 
 
-#### Usage: python webstraping.py <IP|Domain>
+#### Usage
 ```
+[kali-linux]$ python webstraping.py <IP|Domain>
 >>>>> Welcome to WebScraping Tool <<<<<
 Now checking 183.63.206.116 ...
 
