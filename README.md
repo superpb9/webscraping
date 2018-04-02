@@ -8,7 +8,8 @@ Python 2.7 and BeautifulSoup, requests, pandas
 
 #### Usage
 ```
-[kali-linux]$ python webstraping.py <IP|Domain>
+[kali-linux]$ python webscraping.py <IP|Domain>
+
 >>>>> Welcome to WebScraping Tool <<<<<
 Now checking 183.63.206.116 ...
 
