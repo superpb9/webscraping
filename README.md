@@ -7,9 +7,12 @@ Modules Developed: abuseipdb.py, ipvoid.py, myIPWhois.py, sans.py, xforceIBM.py
 Python 2.7 and BeautifulSoup, requests, pandas
 
 Ubuntu:
-Install Easy Install. $ sudo apt-get install python-setuptools python-dev build-essential.
-Install pip. $ sudo easy_install pip.
-Install virtualenv. $ sudo pip install --upgrade virtualenv.
+
+Install Easy Install: $ sudo apt-get install python-setuptools python-dev build-essential.
+
+Install pip: $ sudo easy_install pip
+
+Install virtualenv: $ sudo pip install --upgrade virtualenv
 
 
 #### Usage
