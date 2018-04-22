@@ -10,7 +10,8 @@ def abuseipdbChecker(url):
     #      url = "https://www.abuseipdb.com/check/baidu.com"
     # HTTP Query
     myResult = requests.get(url)
-    print '[.] AbuseIPDB Result'
+    printResult = ''
+    print '[.] AbuseIPDB Result:'
 
     # if the input value is invalid, such as 'baidu.comx', 'x.x.x.x.x', etc.
     # Invalid Input: '422 Unprocessable Entity'
@@ -46,6 +47,7 @@ def abuseipdbChecker(url):
                     exit()
                 else:
                     print 'Reported ' + reportTimes.string + ' times'
+                    printResult = 'Reported ' + reportTimes.string + ' times'
             # if result equals 'None'
             except Exception:
                 reportTimes = 0
@@ -131,3 +133,4 @@ def abuseipdbChecker(url):
                 # Show the finished DataFrame
                 print legislative_df,
                 print ''
+    return printResult

@@ -5,7 +5,7 @@ def IPWhoisChecker(url):
 
     # e.g. url = "https://www.abuseipdb.com/whois/114.200.4.207"
     myResult = requests.get(url)
-    print '[.] IP Whois Result'
+    print '[.] IP Whois Result:'
 
     # if the input value is invalid, such as 'baidu.comx', 'x.x.x.x.x', etc.
     # Invalid Input: '422 Unprocessable Entity'

@@ -20,15 +20,21 @@ def ipvoidChecker(ip):
 
     column1 = []
     column2 = []
+    printResult = ''
 
     if tables !=[]:
         rows = tables[0].findAll('tr')
+        i = 0
         for tr in rows:
+            i+=1
             cols = tr.findAll('td')
             column1.append(cols[0].text)
             column2.append(cols[1].text.
                            replace(" Find Sites | IP Whois","").
                            replace(" Google Map",""))
+            #Get the Blacklist Status
+            if i == 3:
+                printResult = cols[1].text
     # Panda Series
     column1 = Series(column1)
     column2 = Series(column2)
@@ -40,5 +46,6 @@ def ipvoidChecker(ip):
     legislative_df.columns = ['ITEM', 'DATA']
 
     # Show the finished DataFrame
-    print '[.] IPVoid Result:'
+    print '[.] IPVoid Result: '
     print legislative_df,'\n\n'
+    return printResult

@@ -10,8 +10,9 @@ def myXForceChecker(url):
 
     # Auth first
     print ''
-    print '[.] IBM X-Force Result'
+    print '[.] IBM X-Force Result:'
 
+    printResult = []
     # e.g. url = "https://exchange.xforce.ibmcloud.com/ip//114.200.4.207"
     # IP Report
     myResult1 = requests.get(url, auth=HTTPBasicAuth('473284ee-2c45-4719-a201-5e6c81c0253a',
@@ -34,6 +35,7 @@ def myXForceChecker(url):
         for key, value in myJson1["geo"].items():
             geo = "Country" + ": " + str(value)
             print geo
+            printResult.append(geo)
             # Only print country
             # (Ingore country code)
             break
@@ -41,16 +43,20 @@ def myXForceChecker(url):
     if "score" in myJson1:
         if myJson1["score"] == 1:
             print "Risk Score: " + str(myJson1["score"]) + " (low)"
+            printResult.append("Risk Score: " + str(myJson1["score"]) + " (low)")
         else:
             print "Risk Score: " + str(myJson1["score"])
+            printResult.append("Risk Score: " + str(myJson1["score"]))
     # [Print] Categorization:
     if "cats" in myJson1:
         if myJson1["cats"]:
             for key, value in myJson1["cats"].items():
                 cat = str(key) + " (" + str(value) + "%)"
                 print "Categorization: " + cat
+                printResult.append("Categorization: " + cat)
         else:
             print "Categorization: Unsuspicious"
+            printResult.append("Categorization: Unsuspicious")
 
 
     # ----------These keys are for Domain checker----------
@@ -58,10 +64,15 @@ def myXForceChecker(url):
         myJsonResult = myJson1["result"]
         if myJsonResult["score"] == 1:
             print "Risk Score: " + str(myJsonResult["score"]) + " (low)"
+            printResult.append("Risk Score: " + str(myJsonResult["score"]) + " (low)")
         else:
             print "Risk Score: " + str(myJsonResult["score"])
+            printResult.append("Risk Score: " + str(myJsonResult["score"]))
 
         if myJsonResult["categoryDescriptions"]:
             for key, value in myJsonResult["categoryDescriptions"].items():
                 cat = "<" + str(key).replace(" / ", "|") + ">: " + str(value)
                 print cat
+                printResult.append(cat)
+
+    return printResult
