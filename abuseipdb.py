@@ -106,7 +106,7 @@ def abuseipdbChecker(url):
                         index1 += 3
 
                         # Date
-                        date.append(rawData[index2])
+                        date.append(rawData[index2].replace('\n', ''))
                         index2 += 3
 
                         # Category
