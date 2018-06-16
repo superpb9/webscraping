@@ -52,6 +52,7 @@ def abuseipdbChecker(url):
             except Exception:
                 reportTimes = 0
                 print 'Reported ' + str(reportTimes) + ' times'
+                printResult = 'Reported ' + str(reportTimes) + ' times'
                 print ''
 
             # Part 2: Locate the table that we want
