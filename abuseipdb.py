@@ -1,6 +1,8 @@
 from bs4 import BeautifulSoup
 import requests
 
+from IPython.core.display import display
+
 import pandas as pd
 from pandas import Series, DataFrame
 
@@ -11,18 +13,18 @@ def abuseipdbChecker(url):
     # HTTP Query
     myResult = requests.get(url)
     printResult = ''
-    print '[.] AbuseIPDB Result:'
+    print ("[.] AbuseIPDB Result:")
 
     # if the input value is invalid, such as 'baidu.comx', 'x.x.x.x.x', etc.
     # Invalid Input: '422 Unprocessable Entity'
     if myResult.status_code == 422:
-        print 'Error: 422 Unprocessable Entity (e.g. http://www.com)'
-        print 'We expected a valid IP address or Domain name.'
+        print ('Error: 422 Unprocessable Entity (e.g. http://www.com)')
+        print ("We expected a valid IP address or Domain name.")
         exit()
     else:
         # If domain resolved to an IP
         if url != myResult.url:
-            print 'Your request has been resolved to ' + myResult.url
+            print ("Your request has been resolved to ") + myResult.url
         c = myResult.content
         soup = BeautifulSoup(c, "lxml")
 
@@ -43,17 +45,17 @@ def abuseipdbChecker(url):
             # Print reporting times
             try:
                 if reportTimes.string == "Important Note:":
-                    print 'Note: You probably input a private IP. Please check again ...'
+                    print ("Note: You probably input a private IP. Please check again ...")
                     exit()
                 else:
-                    print 'Reported ' + reportTimes.string + ' times'
+                    print ("Reported" + reportTimes.string + " times")
                     printResult = 'Reported ' + reportTimes.string + ' times'
             # if result equals 'None'
             except Exception:
                 reportTimes = 0
-                print 'Reported ' + str(reportTimes) + ' times'
+                print ('Reported ' + str(reportTimes) + ' times')
                 printResult = 'Reported ' + str(reportTimes) + ' times'
-                print ''
+                print ('')
 
             # Part 2: Locate the table that we want
             tables = soup.find_all(class_="table table-striped responsive-table")
@@ -123,6 +125,7 @@ def abuseipdbChecker(url):
                 category = Series(category)
 
                 # Concatenate into a DataFrame
+                pd.set_option('display.width', 5000)
                 legislative_df = pd.concat([date, reporter, category], axis=1)
 
                 # Set up the columns
@@ -132,6 +135,9 @@ def abuseipdbChecker(url):
                 legislative_df = legislative_df.drop_duplicates().reset_index(drop=True)
 
                 # Show the finished DataFrame
-                print legislative_df,
-                print ''
+                #Using IPython instead ($ sudo pip install ipython)
+                #print legislative_df,
+                display(legislative_df)
+
+                print ('')
     return printResult
