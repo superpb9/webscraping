@@ -46,6 +46,6 @@ def ipvoidChecker(ip):
     legislative_df.columns = ['ITEM', 'DATA']
 
     # Show the finished DataFrame
-    print '[.] IPVoid Result: '
-    print legislative_df,'\n\n'
+    print ('[.] IPVoid Result: ')
+    print (legislative_df,'\n\n')
     return printResult

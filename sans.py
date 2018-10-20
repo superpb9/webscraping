@@ -3,7 +3,6 @@ import re
 from bs4 import BeautifulSoup
 import requests, dns.resolver
 
-
 def sansChecker(IPOrDomain):
 
     # HTTP Query
@@ -27,7 +26,7 @@ def sansChecker(IPOrDomain):
     c = myResult.content
     soup = BeautifulSoup(c, "lxml")
     mySoup = soup.find('error')
-    print '[.] SANS Result:'
+    print ('[.] SANS Result:')
 
     # If the input IP has a correct format
     if mySoup is None:
@@ -36,56 +35,56 @@ def sansChecker(IPOrDomain):
         try:
             reportedTimes = soup.find('count')
             if reportedTimes.text != '':
-                print 'Report Times ' + reportedTimes.text
+                print ('Report Times ' + reportedTimes.text)
                 printResult.append('Report Times ' + reportedTimes.text)
             else:
-                print 'Report Times 0'
+                print ('Report Times 0')
                 printResult.append("Report Times 0")
         except Exception:
-            print 'Report Times 0'
+            print ('Report Times 0')
             printResult.append("Report Times 0")
 
         try:
             targets = soup.find('attacks')
             if targets.text != '':
-                print 'Total Targets ' + targets.text
+                print ('Total Targets ' + targets.text)
                 printResult.append('Total Targets ' + targets.text)
             else:
-                print 'Total Targets 0'
+                print ('Total Targets 0')
                 printResult.append('Total Targets 0')
         except Exception:
-            print 'Total Targets 0'
+            print ('Total Targets 0')
             printResult.append('Total Targets 0')
 
         try:
             firstReported = soup.find('mindate')
             if firstReported.text != '':
-                print 'First Reported ' + firstReported.text
+                print ('First Reported ' + firstReported.text)
                 printResult.append('First Reported ' + firstReported.text)
             else:
-                print 'First Reported 0'
+                print ('First Reported 0')
                 printResult.append('First Reported 0')
         except Exception:
-            print 'First Reported 0'
+            print ('First Reported 0')
             printResult.append('First Reported 0')
 
         try:
             latestReported = soup.find('updated')
             if latestReported.text != '':
-                print 'Recent Report ' + latestReported.text
+                print ('Recent Report ' + latestReported.text)
                 printResult.append('Recent Report ' + latestReported.text)
             else:
-                print 'Recent Report 0'
+                print ('Recent Report 0')
                 printResult.append('Recent Report 0')
         except Exception:
-            print 'Recent Report 0'
+            print ('Recent Report 0')
             printResult.append('Recent Report 0')
 
-        print "\n"
+        print ("\n")
 
     # Elif the input IP is wrong
     elif mySoup.text == 'bad IP address':
-        print 'We expected a valid IP address.'
+        print ('We expected a valid IP address.')
         exit()
 
     return printResult
